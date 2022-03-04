@@ -9,6 +9,5 @@ const todosSchema = new Schema({
 
 
 export default new mongoose.model('todoSchema', todosSchema);
-// const todos= new mongoose.model('todo', todosSchema);
-// module.exports=todos
+
 

@@ -53,6 +53,10 @@ app.get("/getAllTodos", async (req, res) => {
             message: "Todos are fetched successfully",
             data: todos
         })
+        // res.status(200).send({
+        //     message: "Todos are fetched successfully",
+        //     data: todos
+        // })
     } catch (error) {
         console.log(error)
     };
@@ -118,3 +122,5 @@ app.delete("/delete/:id", async (req, res) => {
         console.log(error)
     };
 })
+
+
