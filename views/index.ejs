@@ -9,6 +9,12 @@
 <body>
     <!-- <h1>Hello <%=2+2%></h1> -->
     <h1>Hello <%=locals.text%></h1>
+
+
+    <form method="post" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <input type="submit" value="Submit">
+    </form>
    
 </body>
 </html>

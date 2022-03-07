@@ -1,12 +1,15 @@
+import bcrypt from "bcrypt"
 import usersModel from "../users_Schema.js";
 
 const userPost= async(req, res) => {
     try {
+        let salt= await bcrypt.genSalt();
+        let hashedPassword= await bcrypt.hash(req.body.password, salt);
         const users = await usersModel.create({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
-            password: req.body.password,
+            password: hashedPassword,
             date: Date.now()
         })
 
