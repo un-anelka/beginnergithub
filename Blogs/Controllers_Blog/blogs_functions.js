@@ -57,7 +57,7 @@ const blogUpdate= async(req, res) => {
 
         res.status(200).json({
             message: `blog with the ID:${id} is updated successfully`,
-            data: blogupdate
+            // data: blogupdate
         })
     } catch (error) {
         console.log(error)
@@ -77,6 +77,16 @@ const blogDelete= async(req, res) => {
     };
 }
 
+const blogDuplicate= async(req, res, next)=>{
+    const blogs = await blogsModel.find();
+   blogs.filter(blog=> blog.title === req.body.title);
+   if (blogs[0]){
+       return res.status(400).json({
+           message: "The blog exist"
+       })
+   } else{
+       next();
+   }
+}
 
-
-export {blogPost, blogGetAll, blogUpdate, blogDelete, blogGetOne} 
+export {blogPost, blogGetAll, blogUpdate, blogDelete, blogGetOne, blogDuplicate} 

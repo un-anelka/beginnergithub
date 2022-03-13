@@ -77,6 +77,16 @@ const subscriptionDelete= async(req, res) => {
     };
 }
 
+const subscriptionDuplicate= async(req, res, next)=>{
+    const subscriptions = await subscriptionsModel.find();
+   subscriptions.filter(blog=> blog.title === req.body.title);
+   if (subscriptions[0]){
+       return res.status(400).json({
+           message: "The Subscription exist"
+       })
+   } else{
+       next();
+   }
+}
 
-
-export {subscriptionPost, subscriptionGetAll, subscriptionUpdate, subscriptionDelete, subscriptionGetOne} 
+export {subscriptionPost, subscriptionGetAll, subscriptionUpdate, subscriptionDelete, subscriptionGetOne, subscriptionDuplicate} 

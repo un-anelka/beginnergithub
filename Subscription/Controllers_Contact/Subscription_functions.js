@@ -55,7 +55,7 @@ const subscriptionUpdate= async(req, res) => {
 
         res.status(200).json({
             message: `subscription with the ID:${id} is updated successfully`,
-            data: subscriptionId
+            // data: subscriptionId
         })
     } catch (error) {
         console.log(error)

@@ -8,7 +8,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon server.js",
-    "index": "nodemon index.js"
+    "index": "nodemon index.js",
+    "users1":"nodemon ./users/test.js",
+    "token":"nodemon ./users/token.js",
+    "token2":"nodemon ./users/token2.js",
+    "AuthServer":"nodemon AuthServer.js"
   },
   "author": "UN author",
   "license": "ISC",

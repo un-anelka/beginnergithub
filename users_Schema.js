@@ -6,6 +6,8 @@ const userSchema = new Schema({
     lastname: String,
     email: String,
     password: String,
+    role:String,
+    // comment: Array,
     date: { type: Date, default: Date.now }
 });
 
