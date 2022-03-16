@@ -1,25 +1,51 @@
 import bcrypt from "bcrypt"
 import usersModel from "../users_Schema.js";
 import jwt from "jsonwebtoken";
-// import res from "express/lib/response";
+
+
+
 
 const userPost= async(req, res) => {
     try {
         let salt= await bcrypt.genSalt();
         let hashedPassword= await bcrypt.hash(req.body.password, salt);
+        
+        let ROLE="";
+        const user= await usersModel.find();
+        if (!user || user.length===0) {
+            ROLE="admin";
+        }
+            else{
+                ROLE="normal";
+                // res.json(ROLE);
+            }
+        // console.log(ROLE)
+
+            
         const users = await usersModel.create({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
             password: hashedPassword,
-            role: req.body.role,
+            role: ROLE,
             date: Date.now()
         })
-        console.log(req.body)
+        // console.log(req.body)
 
         res.status(201).json({
             message: "User has been created successfully",
-            data: users
+            // data: users.exclude("password")
+            data: {
+                _id: users._id,
+                firstname: users.firstname,
+                lastname: users.lastname,
+                email: users.email,
+                email: users.email,
+                email: users.email,
+                role: users.role,
+                date: users.date
+            }
+
         })
     } catch (error) {
         console.log(error)
@@ -32,8 +58,10 @@ const userGetAll= async(req, res) => {
         });
         
         res.status(200).json(
-            // message: "Todos are fetched successfully",
+        {
+            message: "Todos are fetched successfully",
             users
+        }
         )
         
     } catch (error) {
@@ -44,10 +72,20 @@ const userGetOne= async(req, res) => {
     try {
         const id=req.params.id;
         const userId = await usersModel.findById(id)
-        
-        res.status(200).json({
+        if (!userId) return res.status(404).json({ERROR: "Oops! The user is not found"})
+        return res.status(200).json({
             message: `User with the ID:${id} is fetched successfully`,
-            data:  userId
+            userId:  {
+                _id: userId.id,
+                firstname: userId.firstname,
+                lastname: userId.lastname,
+                email: userId.email,
+                email: userId.email,
+                email: userId.email,
+                role: userId.role,
+                date: userId.date
+            
+            }
         })
     } catch (error) {
         console.log(error)
@@ -58,6 +96,22 @@ const userUpdate= async(req, res) => {
         const id=req.params.id;
         const userId = await usersModel.findByIdAndUpdate(id);
         // const userupdate= req.body
+        const signupValidator = async(req, res, next) => {
+    const users= await usersModel.find();
+    // console.log(users);
+
+    //validating user emails
+    let {email, firstname} = req.body
+    if(!email) return res.json({error: 'email missing'});
+    if(!firstname) return res.json({error: 'name missing'});
+    const repeatedUser=await users.find((u) => u.email === email)
+    if(repeatedUser) return res.json(
+      {
+      message: `user with email ${email} exists`,
+      // user: repeatedUser
+  })
+    next();
+  }
         
         const userupdate = await usersModel.findByIdAndUpdate(id,{
             ...req.body
@@ -75,7 +129,11 @@ const userUpdate= async(req, res) => {
 const userDelete= async(req, res) => {
     try {
         const id=req.params.id;
-        const userId = await usersModel.findByIdAndDelete(id)
+        const userId = await usersModel.findByIdAndDelete(id);
+        if (!userId) {
+            return res.json({message: "The user that you are trying to delete does not exist!"})
+        }
+        
         
         res.status(200).json({
             message: `User with the ID:${id} was deleted successfully`,

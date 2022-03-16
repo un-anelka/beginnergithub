@@ -1,11 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
 import 'dotenv/config';
-import userrouter from "./routes/users_routes.js";
+import userrouter from "./Usersfolder/User_routes/users_routes.js";
 import blogrouter from "./Blogs/Routes_blogs/blogs_routes.js";
-import contactrouter from "./Contacts/Routes_contacts/contact_routes.js";
+// import contactrouter from "./Contacts/Routes_contacts/contact_routes.js";
 import subscriptionrouter from "./Subscription/Routes_Subscription/Subscription_routes.js";
-
+import commentsrouter from "./Comment/Comments_routes/comments_routes.js"
 
 const app = express();
 
@@ -26,10 +26,11 @@ app.listen(Port, async () => {
     } catch (error) {
         console.log(`Error: ${err}`)
     }
-    app.use(userrouter)
-    app.use(blogrouter)
-    app.use(contactrouter)
-    app.use(subscriptionrouter)
+    app.use(userrouter);
+    app.use(blogrouter);
+    // app.use(contactrouter);
+    app.use(subscriptionrouter);
+    app.use(commentsrouter);
 })
 
 

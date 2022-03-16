@@ -66,7 +66,10 @@ const blogUpdate= async(req, res) => {
 const blogDelete= async(req, res) => {
     try {
         const id=req.params.id;
-        const blogId = await blogsModel.findByIdAndDelete(id)
+        const blogId = await blogsModel.findByIdAndDelete(id);
+        if (!blogId) {
+            return res.json({message: "The blog you are trying to delete does not exist."})
+        }
         
         res.status(200).json({
             message: `blog with the ID:${id} was deleted successfully`,
@@ -88,5 +91,7 @@ const blogDuplicate= async(req, res, next)=>{
        next();
    }
 }
+
+
 
 export {blogPost, blogGetAll, blogUpdate, blogDelete, blogGetOne, blogDuplicate} 

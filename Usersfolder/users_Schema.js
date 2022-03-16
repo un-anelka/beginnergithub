@@ -5,7 +5,7 @@ const userSchema = new Schema({
     firstname: String, 
     lastname: String,
     email: String,
-    password: String,
+    password: { type: String, select: false },
     role:String,
     // comment: Array,
     date: { type: Date, default: Date.now }

@@ -38,7 +38,7 @@ const subscriptionGetOne= async(req, res) => {
             message: `subscription with the ID:${id} is fetched successfully`,
             data:  subscriptionId
         })
-    } catch (error) {
+    } catch (error) { 
         console.log(error)
     };
 }

@@ -5,7 +5,10 @@ const blogSchema = new Schema({
     title: String, 
     content: String,
     image: String,
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+
+    comments:[Object]
+
 });
 
 
