@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from 'cors';
 import 'dotenv/config';
 import userrouter from "./Usersfolder/User_routes/users_routes.js";
 import blogrouter from "./Blogs/Routes_blogs/blogs_routes.js";
@@ -14,7 +15,7 @@ app.set("view engine", "ejs");
 app.use(express.json());
 
 
-const Port = process.env.PORT;
+const Port = process.env.PORT || 4500;
 
 
 app.listen(Port, async () => {
@@ -26,6 +27,10 @@ app.listen(Port, async () => {
     } catch (error) {
         console.log(`Error: ${err}`)
     }
+    app.use(cors({
+        origin: "*",
+        origin: "http://127.0.0.1:5501"
+    }))
     app.use(userrouter);
     app.use(blogrouter);
     // app.use(contactrouter);
@@ -33,6 +38,9 @@ app.listen(Port, async () => {
     app.use(commentsrouter);
 })
 
+// import * as  fs from "fs";
+
+// console.log(fs.readFile())
 
 // // UPLOADING IMAGES  
 // import multer from "multer";

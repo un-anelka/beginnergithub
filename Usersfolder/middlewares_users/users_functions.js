@@ -145,9 +145,11 @@ const userDelete= async(req, res) => {
 }
 
 const userlogin=  async (req, res, next) => {
-    const users= await usersModel.find().sort({date: "-1"})
-    const user = await users.filter(user => user.firstname === req.body.firstname);
-    if (!user[0]) return res.status(400).send("cannot find user");
+    const users= await usersModel.find().sort({date: "-1"}).select("+password");
+    const user = await users.filter(user => user.email === req.body.email);
+    // if (!req.body.password) res.json({message: "Fill all fields"});
+   if (!user[0]) return res.status(400).json({message:"cannot find user"});
+    
     else {
         try {
             if(await bcrypt.compare(req.body.password, user[0].password)){
@@ -163,12 +165,10 @@ const userlogin=  async (req, res, next) => {
                 })
                 
             } 
-            else{res.send("Not allowed"); 
+            else{res.send("Not allowed");
+         
             }
-            // res.send(user[0].password); 
-            // console.log(user[0].password)
-    
-            
+
     
         } catch (error) {
             console.log(error)
