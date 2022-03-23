@@ -15,11 +15,9 @@ const userPost= async(req, res) => {
         if (!user || user.length===0) {
             ROLE="admin";
         }
-            else{
-                ROLE="normal";
-                // res.json(ROLE);
+         else{
+            ROLE="normal";
             }
-        // console.log(ROLE)
 
             
         const users = await usersModel.create({
@@ -30,8 +28,8 @@ const userPost= async(req, res) => {
             role: ROLE,
             date: Date.now()
         })
+       
         // console.log(req.body)
-
         res.status(201).json({
             message: "User has been created successfully",
             // data: users.exclude("password")
@@ -39,8 +37,6 @@ const userPost= async(req, res) => {
                 _id: users._id,
                 firstname: users.firstname,
                 lastname: users.lastname,
-                email: users.email,
-                email: users.email,
                 email: users.email,
                 role: users.role,
                 date: users.date
@@ -79,8 +75,6 @@ const userGetOne= async(req, res) => {
                 _id: userId.id,
                 firstname: userId.firstname,
                 lastname: userId.lastname,
-                email: userId.email,
-                email: userId.email,
                 email: userId.email,
                 role: userId.role,
                 date: userId.date
@@ -158,11 +152,14 @@ const userlogin=  async (req, res, next) => {
                 jwt.sign({tokenUser}, "secretkey", (err, token)=>
                 {
                     if (err) throw err;
+                    const decoded= jwt.verify(token, "secretkey")
                     res.json({
                         message: `Token generated and Welcome ${user[0].email}`,
-                        token
+                        token,
+                        author: decoded.tokenUser.lastname
                     })
                 })
+                
                 
             } 
             else{res.send("Not allowed");

@@ -5,14 +5,15 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "jest",
+   "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "start": "node server.js",
     "dev": "nodemon server.js",
     "index": "nodemon index.js",
     "users1": "nodemon ./users/test.js",
     "token": "nodemon ./users/token.js",
     "token2": "nodemon ./users/token2.js",
-    "AuthServer": "nodemon AuthServer.js"
+    "AuthServer": "nodemon AuthServer.js",
+    "app": "nodemon ./supertest/app.js"
   },
   "author": "UN author",
   "license": "ISC",

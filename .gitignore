@@ -1,7 +1,7 @@
-Subscription
+Subscription/
 users
 index.js
 Schema.js
 node_modules
 .env
-Images
+Images/

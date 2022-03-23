@@ -56,16 +56,21 @@ const subscriptionUpdate= async(req, res) => {
         // Object.assign(subscriptionId, subscriptionupdate)
 
         res.status(200).json({
-            message: `subscription with the ID:${id} is updated successfully`,
-            data: subscriptionId
+            message: `subscription with the ID:${id} is updated successfully`
         })
     } catch (error) {
         console.log(error)
     };
 }
 const subscriptionDelete= async(req, res) => {
+
+
     try {
         const id=req.params.id;
+        const subscriber = await subscriptionsModel.findById(id);
+        if(!subscriber) {
+            return res.status(201).json({message: "Oops! The subscriber does not exist!"})
+        }
         const subscriptionId = await subscriptionsModel.findByIdAndDelete(id)
         
         res.status(200).json({
