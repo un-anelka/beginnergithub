@@ -1,7 +1,7 @@
 import request from "supertest";
 import app from "../server.js";
 
-import truth from "./test.js";
+import truth from "./te.js";
 
 
 describe("testing truth ", () => {

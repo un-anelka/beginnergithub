@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">93.75% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/15</span>
+                <span class='fraction'>15/16</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">93.75% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/15</span>
+                <span class='fraction'>15/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -134,7 +134,8 @@
 <a name='L69'></a><a href='#L69'>69</a>
 <a name='L70'></a><a href='#L70'>70</a>
 <a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,30 +149,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -211,7 +213,7 @@ import cors from 'cors';
 import 'dotenv/config';
 import userrouter from "./Usersfolder/User_routes/users_routes.js";
 import blogrouter from "./Blogs/Routes_blogs/blogs_routes.js";
-// import contactrouter from "./Contacts/Routes_contacts/contact_routes.js";
+import contactrouter from './Contacts/Routes_contacts/contacts_routes.js'
 import subscriptionrouter from "./Subscription/Routes_Subscription/Subscription_routes.js";
 import commentsrouter from "./Comment/Comments_routes/comments_routes.js"
 &nbsp;
@@ -219,30 +221,31 @@ const app = express();
 &nbsp;
 app.set("view engine", "ejs");
 &nbsp;
+&nbsp;
 app.use(express.json());
 &nbsp;
 &nbsp;
 const Port = process.env.PORT || <span class="branch-1 cbranch-no" title="branch not covered" >4500;</span>
 &nbsp;
 &nbsp;
-app.listen(Port, <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
-<span class="cstat-no" title="statement not covered" >    console.log(`Connected to server on ${Port} port`);</span>
-<span class="cstat-no" title="statement not covered" >    await mongoose.connect(process.env.DatabaseURI)</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        console.log(`Connected to database`);</span>
-       
+app.listen(Port, async () =&gt; {
+    console.log(`Connected to server on ${Port} port`);
+    await mongoose.connect(process.env.DatabaseURI)
+    try {
+        console.log(`Connected to database`);
+&nbsp;
     } catch (error) {
 <span class="cstat-no" title="statement not covered" >        console.log(`Error: ${err}`)</span>
     }
-<span class="cstat-no" title="statement not covered" >    app.use(cors({</span>
+    app.use(cors({
         origin: "*",
         origin: "http://127.0.0.1:5501"
     }))
-<span class="cstat-no" title="statement not covered" >    app.use(userrouter);</span>
-<span class="cstat-no" title="statement not covered" >    app.use(blogrouter);</span>
-    // app.use(contactrouter);
-<span class="cstat-no" title="statement not covered" >    app.use(subscriptionrouter);</span>
-<span class="cstat-no" title="statement not covered" >    app.use(commentsrouter);</span>
+    app.use(userrouter);
+    app.use(blogrouter);
+    app.use(contactrouter);
+    app.use(subscriptionrouter);
+    app.use(commentsrouter);
 })
 &nbsp;
 // import * as  fs from "fs";
@@ -276,14 +279,14 @@ app.listen(Port, <span class="fstat-no" title="function not covered" >as</span>y
 // })
 &nbsp;
 &nbsp;
-export {app as default}</pre></td></tr></table></pre>
+export default app</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Mar 22 2022 20:34:16 GMT+0200 (Central Africa Time)
+                at Thu Mar 24 2022 18:55:05 GMT+0200 (Central Africa Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

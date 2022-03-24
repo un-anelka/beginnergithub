@@ -29,18 +29,19 @@ app.listen(3000, () => {
         }
 
     })
-    
+
     app.post("/users/login", async (req, res) => {
-        const user = users.find(user=> user.name===req.body.name)
+        const user = users.find(user => user.name === req.body.name)
         console.log(user)
-        
-        if (user== null) return res.status(400).send("cannot find user");
+
+        if (user == null) return res.status(400).send("cannot find user");
         try {
-           
-            if( await bcrypt.compare(req.body.password, user.password)){
+
+            if (await bcrypt.compare(req.body.password, user.password)) {
                 res.send("Success");
-            } 
-            else{res.send("Not allowed");
+            }
+            else {
+                res.send("Not allowed");
             }
 
         } catch (error) {
@@ -49,5 +50,5 @@ app.listen(3000, () => {
 
 
     })
-   
+
 });

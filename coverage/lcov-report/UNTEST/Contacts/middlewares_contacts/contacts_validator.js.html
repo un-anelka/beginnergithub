@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for UNTEST/Blogs/middlewares_blogs/blogs_validator.js</title>
+    <title>Code coverage report for UNTEST/Contacts/middlewares_contacts/contacts_validator.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">UNTEST/Blogs/middlewares_blogs</a> blogs_validator.js</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">UNTEST/Contacts/middlewares_contacts</a> contacts_validator.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.61% </span>
+                <span class="strong">10% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/13</span>
+                <span class='fraction'>1/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">14.28% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/9</span>
+                <span class='fraction'>1/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -81,55 +81,43 @@
 <a name='L16'></a><a href='#L16'>16</a>
 <a name='L17'></a><a href='#L17'>17</a>
 <a name='L18'></a><a href='#L18'>18</a>
-<a name='L19'></a><a href='#L19'>19</a>
-<a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L19'></a><a href='#L19'>19</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import blogsModel from '../blogs_Schema.js'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import contactsModel from '../contacts_Schema.js';
 &nbsp;
-const blogs = blogsModel.find();
-// console.log(blogs)
-const BlogValidator = async(req, res, next) =&gt; {
-    const blogs= await blogsModel.find();
-    // console.log(blogs);
+// const contacts = contactsModel.find();
+// // console.log(contacts)
+const contactValidator = <span class="fstat-no" title="function not covered" >as</span>ync(req, res, next) =&gt; {
+    const contacts= <span class="cstat-no" title="statement not covered" >await contactsModel.find();</span>
+    // console.log(contacts);
 &nbsp;
-    //validating blog emails
-    let {title, content} = req.body
-    if(!title) return res.json({error: 'title missing'});
-    <span class="missing-if-branch" title="if path not taken" >I</span>if(!content) <span class="cstat-no" title="statement not covered" >return res.json({error: 'content missing'});</span>
-    const repeatedblog=await blogs.find((u) =&gt; u.title === title)
-    <span class="missing-if-branch" title="else path not taken" >E</span>if(repeatedblog) return res.json(
-      {
-      message: `blog with title ${title} exists`,
-      // blog: repeatedblog
-  })
+    //validating contact emails
+    let {name, email, message} = <span class="cstat-no" title="statement not covered" >req.body</span>
+<span class="cstat-no" title="statement not covered" >    if(!name) <span class="cstat-no" title="statement not covered" >return res.json({error: 'email missing'});</span></span>
+<span class="cstat-no" title="statement not covered" >    if(!email) <span class="cstat-no" title="statement not covered" >return res.json({error: 'email missing'});</span></span>
+<span class="cstat-no" title="statement not covered" >    if(!message) <span class="cstat-no" title="statement not covered" >return res.json({error: 'message missing'});</span></span>
+    
 <span class="cstat-no" title="statement not covered" >    next();</span>
   }
 &nbsp;
 &nbsp;
-  export {BlogValidator as default}</pre></td></tr></table></pre>
+  export {contactValidator as default}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

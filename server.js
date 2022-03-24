@@ -24,7 +24,7 @@ app.listen(Port, async () => {
     await mongoose.connect(process.env.DatabaseURI)
     try {
         console.log(`Connected to database`);
-       
+
     } catch (error) {
         console.log(`Error: ${err}`)
     }
@@ -38,7 +38,7 @@ app.listen(Port, async () => {
     app.use(subscriptionrouter);
     app.use(commentsrouter);
 })
- 
+
 // import * as  fs from "fs";
 
 // console.log(fs.readFile())
@@ -70,4 +70,4 @@ app.listen(Port, async () => {
 // })
 
 
-export {app as default}
+export default app
