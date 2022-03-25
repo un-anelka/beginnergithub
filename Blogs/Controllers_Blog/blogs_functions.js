@@ -3,29 +3,29 @@ import * as fs from "fs";
 import formidable from "formidable";
 
 const blogPost = async (req, res) => {
-    
-        try {
 
-            const blogs = await blogsModel.create({
-                author: "UN",
-                title: req.body.title,
-                image: req.body.image,
-                content: req.body.content,
-                
-                date: Date.now()
-                
-            
-            })
-            res.status(201).json({
-                message: "blog has been created successfully",
-                data: blogs
-            })
-        } catch (error) {
-            console.log(error)
-        };
+    try {
 
+        const blogs = await blogsModel.create({
+            author: "UN",
+            title: req.body.title,
+            image: req.body.image,
+            content: req.body.content,
+
+            date: Date.now()
+
+
+        })
+        res.status(201).json({
+            message: "blog has been created successfully",
+            data: blogs
+        })
+    } catch (error) {
+        console.log(error)
     };
-  
+
+};
+
 const blogGetAll = async (req, res) => {
     try {
         const blogs = await blogsModel.find().sort({
@@ -45,7 +45,7 @@ const blogGetOne = async (req, res) => {
     try {
         const id = req.params.id;
         const blogId = await blogsModel.findById(id)
-
+        if (!blogId) return res.json({ message: `Blog is with this id ${id} unavailable!` })
         res.status(200).json({
             message: `blog with the ID:${id} is fetched successfully`,
             data: blogId
@@ -195,5 +195,5 @@ const blogDuplicate = async (req, res, next) => {
 
 
 
-export { blogPost, blogGetAll, blogUpdate, blogDelete, blogGetOne, blogDuplicate} 
+export { blogPost, blogGetAll, blogUpdate, blogDelete, blogGetOne, blogDuplicate }
 // export { blogGetAll, blogUpdate, blogDelete, blogGetOne, blogDuplicate, createImage, image } 

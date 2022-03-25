@@ -7,11 +7,11 @@ const blogrouter = express.Router();
 
 
 //CREATE A BLOG LIST
-blogrouter.post("/createBlog", BlogValidator, blogPost)
+blogrouter.post("/createBlog", verifyToken, BlogValidator, blogPost)
 // blogrouter.post("/createBlog",createImage)
 // blogrouter.post("/createBlog", image)
 blogrouter.get("/getAllblogs", blogGetAll);
-blogrouter.get("/getOneblog/:id", verifyToken, userRole, blogGetOne);
+blogrouter.get("/getOneblog/:id", blogGetOne);
 blogrouter.put("/updateblog/:id", verifyToken, userRole, blogUpdate);
 blogrouter.delete("/deleteblog/:id", verifyToken, userRole, blogDelete);
 
