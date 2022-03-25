@@ -8,6 +8,7 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "start": "set NODE_ENV= development&& node server.js",
     "start-prod": "set NODE_ENV= production&& node server.js",
+    "dev": "nodemon server.js",
     "index": "nodemon index.js",
     "users1": "nodemon ./users/test.js",
     "token": "nodemon ./users/token.js",
