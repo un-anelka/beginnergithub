@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">24.32% </span>
+                <span class="strong">15.38% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/37</span>
+                <span class='fraction'>6/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">14.28% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/7</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">16.21% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/36</span>
+                <span class='fraction'>6/37</span>
             </div>
         
             
@@ -291,12 +291,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -309,7 +309,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -466,36 +466,36 @@ import * as fs from "fs";
 import formidable from "formidable";
 &nbsp;
 const blogPost = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-    
-<span class="cstat-no" title="statement not covered" >        try {</span>
 &nbsp;
-            const blogs = <span class="cstat-no" title="statement not covered" >await blogsModel.create({</span>
-                author: "UN",
-                title: req.body.title,
-                image: req.body.image,
-                content: req.body.content,
-                
-                date: Date.now()
-                
-            
-            })
-<span class="cstat-no" title="statement not covered" >            res.status(201).json({</span>
-                message: "blog has been created successfully",
-                data: blogs
-            })
-        } catch (error) {
-<span class="cstat-no" title="statement not covered" >            console.log(error)</span>
-        };
+<span class="cstat-no" title="statement not covered" >    try {</span>
 &nbsp;
+        const blogs = <span class="cstat-no" title="statement not covered" >await blogsModel.create({</span>
+            author: "UN",
+            title: req.body.title,
+            image: req.body.image,
+            content: req.body.content,
+&nbsp;
+            date: Date.now()
+&nbsp;
+&nbsp;
+        })
+<span class="cstat-no" title="statement not covered" >        res.status(201).json({</span>
+            message: "blog has been created successfully",
+            data: blogs
+        })
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >        console.log(error)</span>
     };
-  
-const blogGetAll = async (req, res) =&gt; {
-    try {
-        const blogs = await blogsModel.find().sort({
+&nbsp;
+};
+&nbsp;
+const blogGetAll = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+<span class="cstat-no" title="statement not covered" >    try {</span>
+        const blogs = <span class="cstat-no" title="statement not covered" >await blogsModel.find().sort({</span>
             date: "-1"
         });
 &nbsp;
-        res.status(200).json({
+<span class="cstat-no" title="statement not covered" >        res.status(200).json({</span>
             message: "Todos are fetched successfully",
             data: blogs
         })
@@ -508,7 +508,7 @@ const blogGetOne = <span class="fstat-no" title="function not covered" >as</span
 <span class="cstat-no" title="statement not covered" >    try {</span>
         const id = <span class="cstat-no" title="statement not covered" >req.params.id;</span>
         const blogId = <span class="cstat-no" title="statement not covered" >await blogsModel.findById(id)</span>
-&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!blogId) <span class="cstat-no" title="statement not covered" >return res.json({ message: `Blog is with this id ${id} unavailable!` })</span></span>
 <span class="cstat-no" title="statement not covered" >        res.status(200).json({</span>
             message: `blog with the ID:${id} is fetched successfully`,
             data: blogId
@@ -658,7 +658,7 @@ const blogDuplicate = <span class="fstat-no" title="function not covered" >as</s
 &nbsp;
 &nbsp;
 &nbsp;
-export { blogPost, blogGetAll, blogUpdate, blogDelete, blogGetOne, blogDuplicate} 
+export { blogPost, blogGetAll, blogUpdate, blogDelete, blogGetOne, blogDuplicate }
 // export { blogGetAll, blogUpdate, blogDelete, blogGetOne, blogDuplicate, createImage, image } 
 &nbsp;</pre></td></tr></table></pre>
 
@@ -667,7 +667,7 @@ export { blogPost, blogGetAll, blogUpdate, blogDelete, blogGetOne, blogDuplicate
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Thu Mar 24 2022 18:55:05 GMT+0200 (Central Africa Time)
+                at Sun Mar 27 2022 19:21:51 GMT+0200 (Central Africa Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

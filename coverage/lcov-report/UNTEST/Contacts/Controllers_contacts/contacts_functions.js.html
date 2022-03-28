@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">14.7% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/30</span>
+                <span class='fraction'>5/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">15.62% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/30</span>
+                <span class='fraction'>5/32</span>
             </div>
         
             
@@ -201,7 +201,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -220,7 +220,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -254,27 +254,27 @@ import * as fs from "fs";
 import formidable from "formidable";
 &nbsp;
 const contactPost = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-    
-<span class="cstat-no" title="statement not covered" >        try {</span>
 &nbsp;
-            const contacts = <span class="cstat-no" title="statement not covered" >await contactsModel.create({</span>
-                
-                name: req.body.name,
-                email: req.body.email,
-                message: req.body.message,
-                date: Date.now()
-            
-            })
-<span class="cstat-no" title="statement not covered" >            res.status(201).json({</span>
-                message: "contact has been created successfully",
-                data: contacts
-            })
-        } catch (error) {
-<span class="cstat-no" title="statement not covered" >            console.log(error)</span>
-        };
+<span class="cstat-no" title="statement not covered" >    try {</span>
 &nbsp;
+        const contacts = <span class="cstat-no" title="statement not covered" >await contactsModel.create({</span>
+&nbsp;
+            name: req.body.name,
+            email: req.body.email,
+            message: req.body.message,
+            date: Date.now()
+&nbsp;
+        })
+<span class="cstat-no" title="statement not covered" >        res.status(201).json({</span>
+            message: "contact has been created successfully",
+            data: contacts
+        })
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >        console.log(error)</span>
     };
-  
+&nbsp;
+};
+&nbsp;
 const contactGetAll = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
 <span class="cstat-no" title="statement not covered" >    try {</span>
         const contacts = <span class="cstat-no" title="statement not covered" >await contactsModel.find().sort({</span>
@@ -294,7 +294,7 @@ const contactGetOne = <span class="fstat-no" title="function not covered" >as</s
 <span class="cstat-no" title="statement not covered" >    try {</span>
         const id = <span class="cstat-no" title="statement not covered" >req.params.id;</span>
         const contactId = <span class="cstat-no" title="statement not covered" >await contactsModel.findById(id)</span>
-&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!contactId) <span class="cstat-no" title="statement not covered" >return res.json({ message: "There is no such querry" })</span></span>
 <span class="cstat-no" title="statement not covered" >        res.status(200).json({</span>
             message: `contact with the ID:${id} is fetched successfully`,
             data: contactId
@@ -313,7 +313,7 @@ const contactUpdate = <span class="fstat-no" title="function not covered" >as</s
             ...req.body
         })
 &nbsp;
-&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!contactupdate) <span class="cstat-no" title="statement not covered" >return res.json({ message: "There is no such querry" })</span></span>
 <span class="cstat-no" title="statement not covered" >        res.status(200).json({</span>
             message: `contact with the ID:${id} is updated successfully`,
 &nbsp;
@@ -327,7 +327,7 @@ const contactDelete = <span class="fstat-no" title="function not covered" >as</s
         const id = <span class="cstat-no" title="statement not covered" >req.params.id;</span>
         const contactId = <span class="cstat-no" title="statement not covered" >await contactsModel.findByIdAndDelete(id);</span>
 <span class="cstat-no" title="statement not covered" >        if (!contactId) {</span>
-<span class="cstat-no" title="statement not covered" >            return res.json({ message: "The contact you are trying to delete does not exist." })</span>
+<span class="cstat-no" title="statement not covered" >            return res.json({ message: "There is no such querry" })</span>
         }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        res.status(200).json({</span>
@@ -341,7 +341,7 @@ const contactDelete = <span class="fstat-no" title="function not covered" >as</s
 &nbsp;
 &nbsp;
 &nbsp;
-export {contactPost, contactGetAll, contactDelete, contactGetOne, contactUpdate} 
+export { contactPost, contactGetAll, contactDelete, contactGetOne, contactUpdate } 
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -349,7 +349,7 @@ export {contactPost, contactGetAll, contactDelete, contactGetOne, contactUpdate}
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Thu Mar 24 2022 18:55:05 GMT+0200 (Central Africa Time)
+                at Sun Mar 27 2022 19:21:51 GMT+0200 (Central Africa Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

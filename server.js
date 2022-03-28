@@ -16,12 +16,41 @@ app.set("view engine", "ejs");
 app.use(express.json());
 
 
+
+const { DATABASE_DEV, DATABASE_TEST, NODE_ENV } = process.env;
+// const connectDb = () => {
+//     mongoose
+//         .connect(NODE_ENV === 'test' ? MONGO_URL_TEST : MONGO_URL)
+//         .then(console.log('connected to database'));
+// };
+
+
+
 const Port = process.env.PORT || 4500;
 
 
+// app.listen(Port, async () => {
+//     console.log(`Connected to server on ${Port} port`);
+//     await mongoose.connect(process.env.DATABASE_TEST)
+//     try {
+//         console.log(`Connected to database`);
+
+//     } catch (error) {
+//         console.log(`Error: ${err}`)
+//     }
+//     app.use(cors({
+//         origin: "*",
+//         origin: "http://127.0.0.1:5501"
+//     }))
+//     app.use(userrouter);
+//     app.use(blogrouter);
+//     app.use(contactrouter);
+//     app.use(subscriptionrouter);
+//     app.use(commentsrouter);
+// })
 app.listen(Port, async () => {
     console.log(`Connected to server on ${Port} port`);
-    await mongoose.connect(process.env.DatabaseURI)
+    await mongoose.connect(NODE_ENV === 'test' ? DATABASE_TEST : DATABASE_DEV)
     try {
         console.log(`Connected to database`);
 
@@ -38,6 +67,9 @@ app.listen(Port, async () => {
     app.use(subscriptionrouter);
     app.use(commentsrouter);
 })
+
+
+
 
 // import * as  fs from "fs";
 
